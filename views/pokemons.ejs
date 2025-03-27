@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Pokemons</h1>
+  <ul>
+    <% pokemons.forEach(pokemon => { %>
+      <li>
+        <strong>Name:</strong> <%= pokemon.name %>
+        <br>
+        <strong>Level:</strong> <%= pokemon.level %>
+        <form action="/pokemons/<%= pokemon.id %>/delete" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+  <form action="/pokemons/new" method="POST">
+    <input type="hidden" name="categoryId" value="<%= pokemons[0]?.category_id %>">
+    <input type="text" name="name" placeholder="Pokemon Name" required>
+    <input type="number" name="level" placeholder="Level" required>
+    <button type="submit">Add Pokemon</button>
+  </form>
+</body>
+</html>
